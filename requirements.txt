@@ -1,0 +1,12 @@
+brotli
+chardet
+ipywidgets
+jupyter
+matplotlib
+networkx
+node2vec
+numpy
+pandas
+pecanpy
+scikit-learn
+torch_geometric
