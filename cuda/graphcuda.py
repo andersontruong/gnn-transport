@@ -17,6 +17,8 @@ def generate_random_adjacency_matrix(n_nodes, prob_edge=1.2/(100-1)):
 
     adjacency_matrix = cupy.asnumpy(cupy.triu(masked_matrix, 1) + cupy.tril(masked_matrix.T, -1))
 
+    del mask, weights, masked_matrix
+
     return adjacency_matrix
 
 def generate_random_graph(n_nodes, prob_edge=1.2/(100-1)):
