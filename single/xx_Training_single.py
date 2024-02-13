@@ -131,7 +131,7 @@ def train(filefolder):
             optimizer.zero_grad()
                 
             # y_out = model(adj,adj_t,fm)
-            y_out = model(edge_index,edge_weigth,edge_index_orig,edge_weigth_orig,fm,batch_vector,adjr,edge_mask)#,adj,adj_orig)
+            y_out = model(edge_index,edge_weigth.float(),edge_index_orig,edge_weigth_orig.float(),fm.float(),batch_vector,adjr.float(),edge_mask)#,adj,adj_orig)
                         
             # true_arr = torch.from_numpy(bc_mat_train_shuffled[:,j]).float()
             # true_val = true_arr.to(device)
@@ -238,8 +238,15 @@ def test_no_save(test_list):
         y_true=y_true.to(device)
        
         
-        y_out = model(edge_index,edge_weigth,edge_index_orig,edge_weigth_orig,fm,batch_vector,adjr,edge_mask)#,adj,adj_orig)
-        
+        y_out = model(edge_index,
+                      edge_weigth.float(),
+                      edge_index_orig,
+                      edge_weigth_orig.float(),
+                      fm.float(),
+                      batch_vector,
+                      adjr.float(),
+                      edge_mask)#,adj,adj_orig)
+         
         y_trues.append(float(y_true))
         y_preds.append(float(y_out))
         
@@ -286,8 +293,8 @@ num_epoch = 200
 
 n_features= 256#list_fm_train_shuffled[0].shape[1]
 dropout_val = 0.4
-learning_rate = 0.0005
-learning_rate = 0.0001
+learning_rate = 0.00005
+# learning_rate = 0.0001
 # model_size = 100# bc_mat_train_shuffled.shape[0]
 
 
@@ -324,8 +331,8 @@ testing_score_epochs = []
 
 
 
-filefolder=glob.glob(r"./File_train_single_new/*")
-test_list=glob.glob(r"./File_test_single_new/*")
+filefolder=glob.glob(r"D:\xx_clean_code_vul_fin\single\graph_data_train_single\*")
+test_list=glob.glob(r"D:\xx_clean_code_vul_fin\single\graph_data_test_single\*")
 
 print("Training")
 print(f"Total Number of epoches: {num_epoch}")

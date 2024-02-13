@@ -44,7 +44,7 @@ class Graph_Diff_Reg(nn.Module):
         )
 
 
-    def forward(self,edge_index1,edge_weight1,edge_index2,edge_weight2,fm,batch_tensor,adjr,edge_mask):#,adj,adj_orig):
+    def forward(self,edge_index1,edge_weight1,edge_index2,edge_weight2,fm,batch_tensor):#,adjr,edge_mask):#,adj,adj_orig):
         # x, edge_index, batch = data.x, data.edge_index, data.batch
 
         # First GCN layer
